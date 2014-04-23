@@ -10,7 +10,7 @@
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL                         
     set <- function(y) {                # set the value of a matrix object
-        x <<- y                         # (y is a free variable)
+        x <<- y                         
         m <<- NULL                       
     }
     get <- function() x                 # extract the value from the object
