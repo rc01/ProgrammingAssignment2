@@ -1,15 +1,36 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The purpose of the functions is two-fold:
+## (i)  Creating a matrix with the ability of incorporating new values or
+##      retrieving previously recorded values.
+## (ii) Computing the inverse of that matrix or extracting its cached 
+##      when previously stored.
+## These two functions interact with each other.
 
-## Write a short comment describing this function
-
+## The "makeCacheMatrix" function set or retrieve matrix values. Also the 
+## function gets or stores the matrix inverse.   
 makeCacheMatrix <- function(x = matrix()) {
-    
+    m <- NULL                         
+    set <- function(y) {                # set the value of a matrix object
+        x <<- y                         
+        m <<- NULL                       
+    }
+    get <- function() x                 # extract the value from the object
+    setInverse <- function(Inverse) m <<- Inverse  # store the matrix inverse  
+                                                   #value for future use
+    getInverse <- function() m          # extract the matrix inverse value
+    list(set = set, get = get,
+         setInverse = setInverse,
+         getInverse = getInverse)
 }
 
-
-## Write a short comment describing this function
-
+## The "cacheSolve" function computes the matrix inverse or returns its cache. 
 cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
+    m <- x$getInverse()                 # query the x matrix's cache         
+    if(!is.null(m)) {                   # if there is a cache
+        message("getting cached data") 
+        return(m)                       # return the cache w/o computation
+    }
+    data <- x$get()                     # if there's no cache
+    m <- solve(data, ...)               # matrix inversion computation here
+    x$setInverse(m)                     # save the result back to x's cache
+    m                                   # return the result
 }
