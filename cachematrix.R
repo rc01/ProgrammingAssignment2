@@ -1,11 +1,11 @@
 ## The purpose of the functions is two-fold:
-## (i)  creating a matrix with the ability of incoorporating new values or
-##      retreiving previously recorded values.
+## (i)  Creating a matrix with the ability of incorporating new values or
+##      retrieving previously recorded values.
 ## (ii) Computing the inverse of that matrix or extracting its cached 
 ##      when previously stored.
 ## These two functions interact with each other.
 
-## The "makeCacheMatrix" funtion set or retrieve matrix values. Also the 
+## The "makeCacheMatrix" function set or retrieve matrix values. Also the 
 ## function gets or stores the matrix inverse.   
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL                         
@@ -24,7 +24,6 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## The "cacheSolve" function computes the matrix inverse in the case that this 
 ## is not already cached.
-
 cacheSolve <- function(x, ...) {
     m <- x$getInverse()                 # query the x matrix's cache         
     if(!is.null(m)) {                   # if there is a cache
